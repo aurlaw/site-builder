@@ -1,0 +1,25 @@
+version: '3'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  portainer:
+      container_name: portainer
+      ports:
+          - '9000:9000'
+      restart: always
+      volumes:
+          - '/var/run/docker.sock:/var/run/docker.sock'
+          # - '/opt/portainer:/data'
+      image: portainer/portainer
+      network_mode: bridge
+
+networks:
+  default:
+    external:
+      name: nginx-proxy      

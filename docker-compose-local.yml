@@ -1,0 +1,34 @@
+version: '3'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "8080:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  blue-local:
+    image: nginx:alpine
+    container_name: blue-local
+    volumes:
+      - ./src/static/blue:/usr/share/nginx/html:ro
+    environment:
+      - VIRTUAL_HOST=blue-container.local
+  green-local:
+    image: nginx:alpine
+    container_name: green-local
+    volumes:
+      - ./src/static/green:/usr/share/nginx/html:ro
+    environment:
+      - VIRTUAL_HOST=green-container.local      
+  red-local:
+    image: nginx:alpine
+    container_name: red-local
+    volumes:
+      - ./src/static/red:/usr/share/nginx/html:ro
+    environment:
+      - VIRTUAL_HOST=red-container.local            
+networks:
+  default:
+    external:
+      name: nginx-proxy      
