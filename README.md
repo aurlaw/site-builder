@@ -10,10 +10,16 @@ Hosts file
 
 ```
 
-## Test Local Instances
+## Setup
 
 ```
 docker network create nginx-proxy
+```
+
+
+## Test Local Instances
+
+```
 docker-compose -f docker-compose-local.yml up
 ```
 
@@ -24,3 +30,7 @@ docker-compose up -d
 cd src/ConsoleTest
 dotnet run
 ```
+
+## ASPNET Core
+
+TBD

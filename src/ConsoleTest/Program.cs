@@ -11,7 +11,9 @@ namespace src
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(AppContext.BaseDirectory);
             Console.WriteLine("Connecting to Docker...");
+
             var client = new DockerClientConfiguration(new Uri("unix:///private/var/run/docker.sock"))
                 .CreateClient();
             Task.Run(async () => {
@@ -79,7 +81,7 @@ namespace src
             containerParams.HostConfig.NetworkMode = "nginx-proxy";
             containerParams.HostConfig.Mounts = new List<Mount>();
             containerParams.HostConfig.Mounts.Add(new Mount(){
-                Source = "/Users/michaellawrence/Documents/dev/src/github.com/aurlaw/site-builder/src/static/" + color,
+                Source = "/../../../../src/static/" + color,
                 Target = "/usr/share/nginx/html",
                 ReadOnly = true,
                 Type = "bind",
