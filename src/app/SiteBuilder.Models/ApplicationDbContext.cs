@@ -4,9 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using GatesmanStorage.Service.Models;
 
-namespace GatesmanStorage.Service.Data
+namespace SiteBuilder.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -15,16 +14,12 @@ namespace GatesmanStorage.Service.Data
         {
         }
 
-        public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
-            new ApplicationUserMap(builder.Entity<ApplicationUser>());
-
         }
     }
 }
