@@ -14,6 +14,8 @@ Hosts file
 
 ```
 docker network create nginx-proxy
+docker volume create pgdata
+
 ```
 
 
